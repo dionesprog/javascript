@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-Br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>variaveis e Tipos de Dados</title>
-</head>
-<body>
-    <script>
+
         /*Variavel tudo que se armazena no computador
         Uma variavel é um objeto capaz de guradar e representar u valor ou expressão em um programa
         */
@@ -17,8 +8,15 @@
         Reais (2.2 -3.3 1.23 -2.35)
         Logicos (true, false)
         Caracters ('Diones', 'Lucas')
-
-    </script>
-    
-</body>
-</html>
+        */
+        
+        var valor = 18;
+        console.log(valor);
+        var peso = 18.5;
+        console.log(peso);
+        var resposta = true
+        var nome = 'leticia';
+        console.log(nome);
+        var soma = 1 + 2;
+        var resultado = soma;
+   
