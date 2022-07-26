@@ -4,7 +4,8 @@ let varA = 'A';
 let varB = 'B';
 let varC = 'C';
 
-const varTempA = varA; // nesse exemplo cria-se variavel temporaria mantem o valor da variavel original
+// nesse exemplo cria-se variavel temporaria mantem o valor da variavel original
+const varTempA = varA; 
 const varTempB = varB;
 const varTempc = varC;
 
