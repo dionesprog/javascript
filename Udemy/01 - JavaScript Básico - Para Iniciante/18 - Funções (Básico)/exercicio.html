@@ -10,16 +10,10 @@
     
         <script>
             
-            
-            const nomeVend = (window.prompt(`Nome do vendedor?`));
-            const salarFixo = Number(window.prompt(`Qual é o seu Salario?`));
-            const vendas = Number(window.prompt(`Total de vendas?`));
-            resultado = Number(salarioFixo + (vendas * 0.15));
-            document.body.innerHTML = `Meu nome é ${nome} <br/>`;
-            
-           
-            
-            
+            raio = Number(window.prompt(`Digite o Raio?`));
+            comprimento = 2 * Math.PI * raio
+            area = Math.PI * raio * raio
+            resultado = Number(comprimento * area)15
             
             
         </script>
