@@ -38,6 +38,6 @@ function meuEscopo() {
         console.log(pessoas);
         resultado.innerHTML += `<p>${nome.value} ${sobrenome.value} ${peso.value} ${altura.value}</p>`
     }
-    form.addEventListener('submit', recebeEventoForm); //fica obesrvando ate alguem clicar adiciona um escutador de eventos no formulario
+    form.addEventListener('submit', recebeEventoForm); //fica obesrvando ate alguem clicar adiciona um escutador de eventos no formulario obs addeventListener recebe uma função que no caso foi recebeEventoForm.
 }
 meuEscopo();
