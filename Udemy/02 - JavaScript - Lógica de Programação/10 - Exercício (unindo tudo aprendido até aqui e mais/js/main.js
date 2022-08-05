@@ -1,36 +1,87 @@
 // 1º passo Captuar evento de submit do formulario
-const form = document.querySelector('.formulario');
-form.addEventListener('submit', function(e)  {
- e.preventDefault();
- console.log('evento')
+const form = document.querySelector('.formulario'); // obteve o formulario
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const inputPeso = e.target.querySelector('#peso'); // pegar o input  que e digitado peso
+    const inputAltura = e.target.querySelector('#altura'); // pegar o input inteiro Altura
+
+    const peso = Number(inputPeso.value); //pegar o valor digitado peso
+    const altura = Number(inputAltura.value); //pegar o valor digitado altura
+
+    if (!peso) { // se for diferente de peso retorna mensagem
+        setResultado('Peso inválido', false);
+        return; // finalizo o codigo
+    }
+
+    if (!altura) {
+        setResultado('Altura inválida', false);
+        return;
+    }
+
+    const imc = getImc(peso, altura);
+    const nivelImc = getNivelImc(imc);
+    console.log(imc, nivelImc);
+
+    const msg = `Seu IMC é ${imc} (${nivelImc}).`
+
+    setResultado(msg, true) 
+        
+    
+
 });
 
-function setResultado (msg){ // essa função serve para receber o resultado e mostrar ele na tela esse resultado vai para dentro da DIV criada
-const resultado = document.querySelector('#resultado');
-resultado.innerHTML = msg;
+
+    function getImc (peso, altura){
+       const imc = peso / altura ** 2; 
+        return imc.toFixed(2);
+    }
+
+
+function getNivelImc(imc) {
+    const nivel = ['Abaixo do Peso', 'Peso normal', 'Sobrepeso', 'Obesidade grau 1', 'Obesiade grau 2', 'Obesidade grau 3'];
+
+    if (imc >= 34.9) {
+        return nivel[4];
+    }
+    if (imc >= 29.9) {
+        return nivel[3];
+    }
+    if (imc >= 24.9) {
+        return nivel[2];
+    }
+    if (imc >= 18.5) {
+        return nivel[1];
+    }
+    if (imc < 18.5) {
+        return nivel[0];
+    }
+
+
+
+
+    function criaParag() {
+        const p = document.createElement('p'); //criado um paragrago com nome de p
+        return p;
+    }
+
+
+    function setResultado(msg, isvalid) { // essa função serve para receber o resultado e mostrar ele na tela esse resultado vai para dentro da DIV criada
+        const resultado = document.querySelector('#resultado');
+        resultado.innerHTML = ''; // trazer resultado em branco javaScript
+
+        
+        
+        const p = criaParag();
+
+        if (isvalid) {
+            p.classList.add('paragrafo-resultado');
+        } else {
+            p.classList.add('incorreto');
+        }
+
+        p.innerHTML = msg;
+        resultado.appendChild(p)
+    }
 
 }
-
-
-
-function imc(peso, altura) {
-    const resultado = ((peso / (altura * altura)));
-
-     if (resultado < 18.5) {
-        console.log('Abaixo do Peso');
-    } else if (resultado >= 18.5 && resultado <= 24.9) {
-        console.log('Peso normal');
-    } else if (resultado >= 25 && resultado <= 29.9) {
-        console.log('Sobrepeso')
-    } else if (resultado >= 30 && resultado <= 34.9) {
-        console.log('Obesidade grau 1')
-    } else if (resultado >= 35 && resultado <= 39.9) {
-        console.log('Obesiade grau 2')
-    } else if (resultado >= 40 && resultado <= 100) {
-        console.log('Obesidade grau 3')}
-    
-    
-    return resultado.toFixed(2)
-}
-
-console.log(imc(80, 1.6));
