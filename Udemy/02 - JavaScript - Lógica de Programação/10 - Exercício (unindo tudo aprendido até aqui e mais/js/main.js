@@ -65,7 +65,7 @@ function getNivelImc(imc) {
 
         function setResultado (msg, isvalid) {
             const resultado = document.querySelector('#resultado');
-
+            resultado.innerHTML = '';
             
         
 
