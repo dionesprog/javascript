@@ -21,13 +21,10 @@ form.addEventListener('submit', function (e) {
 
     const imc = getImc(peso, altura);
     const nivelImc = getNivelImc(imc);
-    console.log(imc, nivelImc);
 
     const msg = `Seu IMC é ${imc} (${nivelImc}).`
 
-    setResultado(msg, true) 
-        
-    
+    setResultado(msg, true); 
 
 });
 
@@ -66,9 +63,11 @@ function getNivelImc(imc) {
     }
 
 
-    function setResultado(msg, isvalid) { // essa função serve para receber o resultado e mostrar ele na tela esse resultado vai para dentro da DIV criada
-        const resultado = document.querySelector('#resultado');
-        resultado.innerHTML = ''; // trazer resultado em branco javaScript
+        function setResultado (msg, isvalid) {
+            const resultado = document.querySelector('#resultado');
+
+            
+        
 
         
         
@@ -82,6 +81,8 @@ function getNivelImc(imc) {
 
         p.innerHTML = msg;
         resultado.appendChild(p)
+
+        resultado.innerHTML = '';
     }
 
 }
