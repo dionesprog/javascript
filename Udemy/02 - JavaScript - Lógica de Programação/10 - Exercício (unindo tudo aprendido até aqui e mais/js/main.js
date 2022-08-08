@@ -63,9 +63,10 @@ function getNivelImc(imc) {
     }
 
 
-        function setResultado (msg, isvalid) {
-            const resultado = document.querySelector('#resultado');
-            resultado.innerHTML = '';
+       function setResultado(){
+        
+       }
+           
             
         
 
@@ -78,6 +79,7 @@ function getNivelImc(imc) {
         } else {
             p.classList.add('incorreto');
         }
+    
 
         p.innerHTML = msg;
         resultado.appendChild(p)
@@ -85,4 +87,4 @@ function getNivelImc(imc) {
         resultado.innerHTML = '';
     }
 
-}
+
