@@ -1,90 +1,85 @@
 // 1º passo Captuar evento de submit do formulario
-const form = document.querySelector('.formulario'); // obteve o formulario
 
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const inputPeso = e.target.querySelector('#peso'); // pegar o input  que e digitado peso
-    const inputAltura = e.target.querySelector('#altura'); // pegar o input inteiro Altura
+const form = document.querySelector('#formulario');
+form.addEventListener('submit', function(evento){ // essa funcao captura valor digitado
+evento.preventDefault(); //serve para deixar formulario ser enviado
 
-    const peso = Number(inputPeso.value); //pegar o valor digitado peso
-    const altura = Number(inputAltura.value); //pegar o valor digitado altura
+const inputPeso = evento.target.querySelector('#peso'); // selecione id peso
+const inputAltura = evento.target.querySelector('#altura'); // seleciono id altura
 
-    if (!peso) { // se for diferente de peso retorna mensagem
-        setResultado('Peso inválido', false);
-        return; // finalizo o codigo
-    }
+const peso = Number(inputPeso.value); 
+const altura = Number(inputAltura.value);
 
-    if (!altura) {
-        setResultado('Altura inválida', false);
-        return;
-    }
+if (!peso) {
+    setResultado('Peso Inválido', false);
+    return; // para a função aqui
+}
 
-    const imc = getImc(peso, altura);
-    const nivelImc = getNivelImc(imc);
+if (!altura) {
+    setResultado('Altura Inválida', false);
+    return; // para a função aqui
+}
 
-    const msg = `Seu IMC é ${imc} (${nivelImc}).`
 
-    setResultado(msg, true); 
+const imc = getImc(peso, altura);
+const nivel = getNivelimc (imc);
+ 
+const msg = `Seu IMC é ${imc} (${nivel}).`;
+
+setResultado(msg, true);
 
 });
 
+function getNivelimc(imc){
+    const nivel = ['Abaixo do Peso', 'Peso Normal', 'Sobre Peso', 'Obesidade grau 1', 'Obesidade grau 2', 'Obesidade grau 3'];
 
-    function getImc (peso, altura){
-       const imc = peso / altura ** 2; 
-        return imc.toFixed(2);
+    if(imc >= 39.9) {
+        return nivel [5]
+      }  else if (imc >= 34.9){
+        return nivel [4]
+      }  else if (imc >= 29.9){
+        return nivel [3]
+      }  else if (imc >= 24.9){
+        return nivel [2]
+      }  else if (imc >= 18.5){
+        return nivel [1]
+      } else if (imc < 18.5)
+      return nivel[0];
     }
 
+function getImc (peso, altura){
+const imc = peso / altura ** 2;
+return imc.toFixed(2);
+}
 
-function getNivelImc(imc) {
-    const nivel = ['Abaixo do Peso', 'Peso normal', 'Sobrepeso', 'Obesidade grau 1', 'Obesiade grau 2', 'Obesidade grau 3'];
+function criaP () {
+    const p = document.createElement('p');  // create serve para criar elemento
+    return p;
+}
 
-    if (imc >= 34.9) {
-        return nivel[4];
-    }
-    if (imc >= 29.9) {
-        return nivel[3];
-    }
-    if (imc >= 24.9) {
-        return nivel[2];
-    }
-    if (imc >= 18.5) {
-        return nivel[1];
-    }
-    if (imc < 18.5) {
-        return nivel[0];
-    }
+// essa funcção serve para colocar uma mensage html dentro da div resultado
+function setResultado (msg, isvalid){
+const resultado = document.querySelector('#resultado');
+resultado.innerHTML = '';
 
 
+const p = criaP();
+
+if (isvalid) {
+    p.classList.add('paragrafo-resultado');
+} else  {
+    p.classList.add('incorreto');
+}
+
+p.innerHTML = msg;
+resultado.appendChild(p); //adiciona resultado a div
+
+}
 
 
-    function criaParag() {
-        const p = document.createElement('p'); //criado um paragrago com nome de p
-        return p;
-    }
+   
 
 
-       function setResultado(){
-        
-       }
-           
-            
-        
 
-        
-        
-        const p = criaParag();
-
-        if (isvalid) {
-            p.classList.add('paragrafo-resultado');
-        } else {
-            p.classList.add('incorreto');
-        }
-    
-
-        p.innerHTML = msg;
-        resultado.appendChild(p)
-
-        resultado.innerHTML = '';
-    }
 
 
